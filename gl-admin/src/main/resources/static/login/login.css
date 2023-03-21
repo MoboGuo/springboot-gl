@@ -1,0 +1,19 @@
+h1{
+    text-align: center;
+    padding: 50px 50px;
+    margin: 100px auto auto;
+}
+.loginForm {
+    width: 500px;
+    height: 500px;
+    padding: 50px 50px;
+    margin: 100px auto auto;
+}
+.layui-btn-normal {
+    margin-left: 415px;
+}
+
+#checkLogin {
+    margin-top: 10px;
+    margin-left: 325px;
+}

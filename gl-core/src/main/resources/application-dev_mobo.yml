@@ -1,7 +1,11 @@
 server:
   port: 8090
-  #redis 配置
 spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://101.200.145.49:3306/satokens?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&failOverReadOnly=false&serverTimezone=GMT
+    username: root
+    password: LIUkl@159357
   #redis 配置
   redis:
     database: 0
@@ -15,3 +19,15 @@ spring:
       shutdown-timeout: 100ms
     password:
     port: 6379
+  documentation:
+    enabled: true
+  mvc:
+    pathmatch:
+      # 引入swagger3.0时加入的配置 localhost:8090/swagger-ui/index.html
+      matching-strategy: ant_path_matcher
+mybatis-plus:
+  mapper-locations: mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.example.gladmin.domain
