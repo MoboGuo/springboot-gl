@@ -1,11 +1,13 @@
 package com.example.gladmin.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import com.example.common.RespResult;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+@Slf4j
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
@@ -16,21 +18,20 @@ public class LoginController {
      */
     @PostMapping("/login")
     public Object login(@RequestParam String userName,@RequestParam String password){
-        Map<Object, Object> map = new HashMap<>();
-        if("lkle".equals(userName) && "123456".equals(password)) {
+        String thisUserName = "lkle";
+        String thisPassword = "123456";
+        if(thisUserName.equals(userName) && thisPassword.equals(password)) {
             StpUtil.login(10001);
-            map.put("msg","登录成功");
-            return map;
+            log.info("登录成功，当前用户:"+thisUserName);
+            return RespResult.SUCC("登录成功");
         }
-        map.put("msg","登录失败");
-        return map;
+        log.error("登录失败");
+        return RespResult.FAIL("登录失败");
     }
 
     @PostMapping("/isLogin")
     public Object isLogin() {
-        Map<Object, Object> map = new HashMap<>();
-        map.put("msg","当前会话是否登录：" + StpUtil.isLogin());
-        return map;
+        return RespResult.SUCC("当前会话是否登录：" + StpUtil.isLogin());
     }
 
 }

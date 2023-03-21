@@ -27,6 +27,6 @@ public class GlAdminApplication {
         log.info("\n----------------------------------------------------------\n" +
                 "swagger-ui: \thttp://" + ip + ":" + port + path + "/swagger-ui/index.html\n" +
                 "----------------------------------------------------------");
-        System.out.println("启动成功：Sa-Token配置如下：" + SaManager.getConfig());
+        log.info("启动成功：Sa-Token配置如下：" + SaManager.getConfig());
     }
 }

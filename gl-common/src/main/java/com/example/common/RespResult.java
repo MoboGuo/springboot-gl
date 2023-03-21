@@ -17,9 +17,9 @@ public class RespResult implements Serializable {
     /** 调用失败状态码 **/
     public static final int FAIL = -1;
     /** 调用成功返回字符串 **/
-    public static final String SUCC_MESSAGE = "调用成功";
+    public static final String SUCC_MSG = "调用成功";
     /** 调用失败返回字符串 **/
-    public static final String FAIL_MESSAGE = "调用失败";
+    public static final String FAIL_MSG = "调用失败";
 
 
     /** 状态码 **/
@@ -27,37 +27,41 @@ public class RespResult implements Serializable {
     /** 数据 **/
     private Object data;
     /** 返回信息 **/
-    private String message;
+    private String msg;
 
-    public RespResult(int code, String message) {
+    public RespResult(int code, String msg) {
         this.code = code;
-        this.message = message;
+        this.msg = msg;
     }
 
-    public RespResult(int code, Object data, String message) {
+    public RespResult(int code, Object data, String msg) {
         this.code = code;
         this.data = data;
-        this.message = message;
+        this.msg = msg;
     }
 
     public static RespResult SUCC() {
-        return new RespResult(SUCCESS, SUCC_MESSAGE);
+        return new RespResult(SUCCESS, SUCC_MSG);
+    }
+
+    public static RespResult SUCC(String msg) {
+        return new RespResult(SUCCESS, msg);
     }
 
     public static RespResult FAIL() {
-        return new RespResult(FAIL, FAIL_MESSAGE);
+        return new RespResult(FAIL, FAIL_MSG);
     }
 
-    public static RespResult FAIL(String message) {
-        return new RespResult(FAIL, message);
+    public static RespResult FAIL(String msg) {
+        return new RespResult(FAIL, msg);
     }
 
     public static RespResult SUCC_DATA(Object data) {
-        return new RespResult(SUCCESS, data, SUCC_MESSAGE);
+        return new RespResult(SUCCESS, data, SUCC_MSG);
     }
 
-    public static RespResult SUCC_DATA(Object data, String message) {
-        return new RespResult(SUCCESS, data, message);
+    public static RespResult SUCC_DATA(Object data, String msg) {
+        return new RespResult(SUCCESS, data, msg);
     }
 
 
