@@ -1,6 +1,6 @@
 package com.example.gladmin;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.dev33.satoken.SaManager;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
 public class GlAdminApplication {
 
     public static void main(String[] args) throws UnknownHostException {
-        ConfigurableApplicationContext application =SpringApplication.run(GlAdminApplication.class, args);
+        ConfigurableApplicationContext application = SpringApplication.run(GlAdminApplication.class, args);
         Environment env = application.getEnvironment();
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = env.getProperty("server.port");
@@ -26,6 +26,6 @@ public class GlAdminApplication {
         log.info("\n----------------------------------------------------------\n" +
                 "swagger-ui: \thttp://" + ip + ":" + port + path + "/swagger-ui/index.html\n" +
                 "----------------------------------------------------------");
+        System.out.println("启动成功：Sa-Token配置如下：" + SaManager.getConfig());
     }
-
 }
