@@ -19,8 +19,6 @@ spring:
       shutdown-timeout: 100ms
     password:
     port: 6379
-  documentation:
-    enabled: true
   mvc:
     pathmatch:
       # 引入swagger3.0时加入的配置 localhost:8090/swagger-ui/index.html
@@ -31,6 +29,9 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
   type-aliases-package: com.example.gladmin.domain
+
+swagger:
+  enabled: true
 
 sa-token:
   # token名称 (同时也是cookie名称)

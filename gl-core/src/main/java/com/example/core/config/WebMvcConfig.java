@@ -1,5 +1,6 @@
 package com.example.core.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
+    @Value("${swagger.enabled}")
+    private Boolean swaggerEnabled;
     /**
      * 解决继承WebMvcConfigurationSupport,静态资源访问不到
      */
@@ -22,6 +25,14 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         //设定访问静态资源路径为根目录下static文件夹下，并且访问时可直接用/代替/static/
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        //放行swagger
+        if(swaggerEnabled){
+            registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+            registry.addResourceHandler("/data/**").addResourceLocations("classpath:/data/");
+            registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+            registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+            registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        }
         super.addResourceHandlers(registry);
     }
 
