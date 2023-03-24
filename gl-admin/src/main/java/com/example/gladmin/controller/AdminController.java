@@ -3,7 +3,9 @@ package com.example.gladmin.controller;
 import cn.dev33.satoken.secure.SaSecureUtil;
 import cn.dev33.satoken.stp.StpUtil;
 import com.example.common.RespResult;
+import com.example.gladmin.domain.SysMenu;
 import com.example.gladmin.domain.SysUser;
+import com.example.gladmin.service.SysPermissionService;
 import com.example.gladmin.service.SysUserService;
 import com.example.gladmin.utils.SaTokenUtil;
 import com.example.gladmin.utils.ServletUtils;
@@ -31,7 +33,12 @@ public class AdminController {
     @Resource
     private SysUserService sysUserService;
 
-    private final String prefix = "admin";
+    @Resource
+    private SysPermissionService sysPermissionService;
+
+
+
+    private final String PREFIX = "admin";
 
 
     @ApiOperation(value = "请求到登陆界面", notes = "请求到登陆界面")
@@ -54,7 +61,6 @@ public class AdminController {
             CaptchaUtil.clear(request);
             check = true;
         }
-
         if (check) {
             String userName = user.getUsername();
             if (!StpUtil.isLogin()) {
@@ -75,7 +81,6 @@ public class AdminController {
             } else {
                 if (StringUtils.isNotNull(SaTokenUtil.getUser())) {
                     // 跳转到 get请求的登陆方法
-                    // view.setViewName("redirect:/"+prefix+"/index");
                     return RespResult.SUCC();
                 } else {
                     return RespResult.ERROR(500, "未知账户");
@@ -91,8 +96,18 @@ public class AdminController {
     public String index(HttpServletRequest request) {
         request.getSession().setAttribute("sessionUserName", SaTokenUtil.getUser().getNickname());
         // 获取公告信息
+        // TODO: 2023/3/24 暂时用不到，后续写到这个地方再加
 //        List<SysNotice> notices = sysNoticeService.getuserNoticeNotRead(SaTokenUtil.getUser(), 0);
         request.getSession().setAttribute("notices", null);
-        return prefix + "/index";
+        return PREFIX + "/index";
+    }
+
+
+    @ApiOperation(value = "获取登录用户菜单栏", notes = "获取登录用户菜单栏")
+    @GetMapping("/getUserMenu")
+    @ResponseBody
+    public List<SysMenu> getUserMenu() {
+        List<SysMenu> sysMenus = sysPermissionService.getSysMenus(SaTokenUtil.getUserId());
+        return sysMenus;
     }
 }
