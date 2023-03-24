@@ -23,6 +23,17 @@ spring:
     pathmatch:
       # 引入swagger3.0时加入的配置 localhost:8090/swagger-ui/index.html
       matching-strategy: ant_path_matcher
+
+  thymeleaf:
+    model: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    #指定编码
+    encoding: utf-8
+    #禁用缓存 默认false
+    cache: false
+
+
 mybatis-plus:
   mapper-locations: mapper/*.xml
   configuration:

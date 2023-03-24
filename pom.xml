@@ -94,6 +94,17 @@
             <artifactId>sa-token-spring-boot-starter</artifactId>
             <version>1.34.0</version>
         </dependency>
+        <!-- thymeleaf模版 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!-- easy-captcha验证码生成 -->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>1.6.2</version>
+        </dependency>
     </dependencies>
 
     <build>

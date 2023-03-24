@@ -20,6 +20,7 @@ spring:
     password:
     port: 6379
   mvc:
+    static-path-pattern: /static/**
     pathmatch:
       # 引入swagger3.0时加入的配置 localhost:8090/swagger-ui/index.html
       matching-strategy: ant_path_matcher

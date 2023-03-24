@@ -24,7 +24,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         //设定访问静态资源路径为根目录下static文件夹下，并且访问时可直接用/代替/static/
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         //放行swagger
         if(swaggerEnabled){
             registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
@@ -50,15 +50,15 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         super.configureViewResolvers(registry);
     }
 
-    @Override
-    protected void addViewControllers(ViewControllerRegistry registry) {
-        //配置自动打开登录页，即直接访问ip:port即可打开登录页
-        //访问路径如果为 “/” 跳转到指定页面
-        registry.addViewController("/").setViewName("forward:/login/login.html");
-        //设置为最高优先级
-        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        super.addViewControllers(registry);
-    }
+//    @Override
+//    protected void addViewControllers(ViewControllerRegistry registry) {
+//        //配置自动打开登录页，即直接访问ip:port即可打开登录页
+//        //访问路径如果为 “/” 跳转到指定页面
+//        registry.addViewController("/").setViewName("forward:/login/login.html");
+//        //设置为最高优先级
+//        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//        super.addViewControllers(registry);
+//    }
 
 
 }
