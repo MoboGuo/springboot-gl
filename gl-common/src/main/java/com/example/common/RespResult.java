@@ -1,5 +1,6 @@
 package com.example.common;
 
+import com.google.protobuf.Message;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,11 +10,11 @@ import java.io.Serializable;
  * @date 2023/3/17 17:17
  */
 @Data
-public class RespResult implements Serializable {
+public class RespResult<T> implements Serializable {
     private static final long serialVersionUID = 5635833589180135122L;
 
     /** 调用成功状态码 **/
-    public static final int SUCCESS = 0;
+    public static final int SUCCESS = 200;
     /** 调用失败状态码 **/
     public static final int FAIL = -1;
     /** 调用成功返回字符串 **/
@@ -25,7 +26,7 @@ public class RespResult implements Serializable {
     /** 状态码 **/
     private int code;
     /** 数据 **/
-    private Object data;
+    private T data;
     /** 返回信息 **/
     private String msg;
 
@@ -34,7 +35,7 @@ public class RespResult implements Serializable {
         this.msg = msg;
     }
 
-    public RespResult(int code, Object data, String msg) {
+    public RespResult(int code, T data, String msg) {
         this.code = code;
         this.data = data;
         this.msg = msg;
@@ -64,5 +65,11 @@ public class RespResult implements Serializable {
         return new RespResult(SUCCESS, data, msg);
     }
 
+    public static RespResult ERROR(int code, String msg) {
+        return new RespResult(code, msg);
+    }
 
+    public RespResult info(T data, String message, int code) {
+        return new RespResult(code, data, message);
+    }
 }

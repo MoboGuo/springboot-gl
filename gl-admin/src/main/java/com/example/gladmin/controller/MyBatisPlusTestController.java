@@ -1,8 +1,8 @@
 package com.example.gladmin.controller;
 
 import com.example.common.RespResult;
-import com.example.gladmin.domain.TSysUser;
-import com.example.gladmin.service.impl.MpTestService;
+import com.example.gladmin.domain.SysUser;
+import com.example.gladmin.service.SysUserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,16 +18,16 @@ import javax.annotation.Resource;
 public class MyBatisPlusTestController {
 
     @Resource
-    private MpTestService mpTestService;
+    private SysUserService userService;
 
     @GetMapping("/getUserList")
     public RespResult getUserList() {
-        return RespResult.SUCC_DATA(mpTestService.getUserList());
+        return RespResult.SUCC_DATA(userService.list());
     }
 
-    @GetMapping("/getUserByName")
-    public RespResult getUserByName(@RequestParam String userName) {
-        TSysUser user = mpTestService.getUserByName(userName);
+    @GetMapping("/getUserById")
+    public RespResult getUserById(@RequestParam String id) {
+        SysUser user = userService.getById(id);
         return RespResult.SUCC_DATA(user);
     }
 

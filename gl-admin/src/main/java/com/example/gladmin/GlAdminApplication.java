@@ -14,7 +14,7 @@ import java.net.UnknownHostException;
 
 @Slf4j
 @SpringBootApplication(scanBasePackages = {"com.example"})
-@MapperScan(basePackages = "com.example.gladmin.dao")
+@MapperScan(basePackages = "com.example.gladmin.mapper")
 @EnableOpenApi
 public class GlAdminApplication {
 

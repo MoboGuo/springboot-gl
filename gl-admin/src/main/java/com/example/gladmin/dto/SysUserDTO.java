@@ -1,10 +1,9 @@
 package com.example.gladmin.dto;
 
-import com.example.gladmin.domain.TSysUser;
 import lombok.Data;
 
 @Data
-public class TSysUserDTO {
+public class SysUserDTO {
     private String id;
     private String username;
     private String password;

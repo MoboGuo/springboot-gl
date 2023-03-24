@@ -39,7 +39,7 @@ mybatis-plus:
 3、SpringBoot启动类增加mapper文件扫描路径
 
 ```java
-@MapperScan(basePackages = "com.example.gladmin.dao")
+@MapperScan(basePackages = "com.example.gladmin.mapper")
 ```
 
 注意，如果有service层，需要添加@Service注解以便被Spring扫描加载

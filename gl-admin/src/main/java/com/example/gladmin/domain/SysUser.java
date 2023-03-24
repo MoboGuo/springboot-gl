@@ -1,6 +1,6 @@
 package com.example.gladmin.domain;
 
-import com.example.gladmin.dto.TSysUserDTO;
+import com.example.gladmin.dto.SysUserDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Data
 @ApiModel(value="TSysUser对象", description="用户信息")
-public class TSysUser implements Serializable {
+public class SysUser implements Serializable {
 
     private String id;
 
@@ -24,7 +24,9 @@ public class TSysUser implements Serializable {
     private int depId;
     private String posId;
 
-    public TSysUser(TSysUserDTO tSysUserDTO) {
-        BeanUtils.copyProperties(tSysUserDTO, this);
+    public SysUser(){};
+
+    public SysUser(SysUserDTO sysUserDTO) {
+        BeanUtils.copyProperties(sysUserDTO, this);
     }
 }
